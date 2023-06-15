@@ -9,7 +9,14 @@ const StudentList = () => {
       <h1>Student List</h1>
       <h2>Total Student: {students.length}</h2>
       {students.map((item) => {
-        return <StudentItem nama={item.nama} jurusan={item.jurusan} />;
+        return (
+          <StudentItem
+            key={item.id}
+            id={item.id}
+            nama={item.nama}
+            jurusan={item.jurusan}
+          />
+        );
       })}
     </div>
   );

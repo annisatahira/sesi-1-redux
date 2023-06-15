@@ -1,7 +1,7 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialStudentState = {
-  currentId: 0,
+  currentId: 3,
   students: [
     {
       id: 1,
@@ -36,11 +36,18 @@ const studentSlice = createSlice({
         jurusan: action.payload.jurusan,
       });
     },
-    deleteStudent: () => {},
+    deleteStudent: (state, action) => {
+      const { id } = action.payload;
+      const index = state.students.findIndex((student) => student.id === id);
+
+      if (index !== -1) {
+        state.students.splice(index, 1);
+      }
+    },
   },
 });
 
 // untuk mengubah state
-export const { addStudent } = studentSlice.actions;
+export const { addStudent, deleteStudent } = studentSlice.actions;
 
 export default studentSlice.reducer;
